@@ -582,6 +582,9 @@ section#comments{
         margin: 10px 0;
         width: 100%;
     }
+    .prj-grid .featured .overlay{
+        line-height: 280px;
+    }
     .prj-cell .links{
         display: none;
     }
