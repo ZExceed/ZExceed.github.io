@@ -593,6 +593,8 @@ section#comments{
 
 /*content style begin*/
 .article-content p, .article-content pre, .article-content ul, .article-content ol, .article-content dl, .article-content form, .article-content hr, .article-content table, blockquote{
+    word-wrap:break-word;
+    word-break:break-all;
     margin-bottom:1em;
 }
 
