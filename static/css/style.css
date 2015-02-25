@@ -742,6 +742,7 @@ section#comments{
 }
 .article-content .highlight .line {
     height: 1.4em;
+    line-height: 1.4em;
 }
 pre .comment{
     color: #008200;
