@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>Xscc.Com </title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.xscc.com/html5.js"></script>
+    <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+<header class="header clearfix">
+    <h1 class="logo"><a href="http://www.xscc.com">Xscc.Com</a></h1>
+    <nav>
+        <a href="http://www.xscc.com">首页</a>
+        
+        <a href="/categories/share/">分享</a>
+        
+        <a href="/categories/it/">知识</a>
+        
+        <a href="/categories/hi/">杂谈</a>
+        
+        <a href="/project/">作品</a>
+        <a href="/me/">关于我</a>
+    </nav>
+</header>
+
+<div class="container clearfix">
+    <div class="article-area">
+    
+    
+        <article class="post">
+    <header class="article-header">
+        <h1><a href="/cs-rating.html">CS游戏的天梯系统设计思考</a></h1>
+        <div class="details">
+            ZExceed / 2012-10-15 20:30:30
+             / 
+                <a href="/categories/share/">分享</a>
+            
+        </div>
+    </header>
+    <div class="article-content">
+        
+            <p><img src="http://cdn.xscc.com/images/cs-rating/1.jpg" alt="1"></p>
+<p>传统竞技游戏，玩家玩的越久、打怪越多，那么积分自然越高，但决不代表玩家的水平也如积分那么高，因而久玩乏味，所以11平台开发了DOTA天梯系统这是他成功的关键因素。</p>
+<p>天梯系统的几个关键点：<br><strong>强弱关系</strong></p>
+<ul>
+<li>对手比你强（天梯比你高）你胜天梯加多分，输天梯减少分。</li>
+<li>你比对手强（天梯比他低）你胜天梯加少分，输天梯减多分。</li>
+<li>加减分多少与你和对手的差距有比较大关系，其思想是高手赢了新手，理所当然，输给新手，不可原谅，反之亦然。</li>
+</ul>
+<p><strong>战绩表现</strong></p>
+<ul>
+<li>从CS上讲，你是爆头多？C4多？1V3？1V4？还是K/D比多寡？战绩也决定该场加减分情况，即便你在这场比赛里是输的一方，但有可能你是该场的MVP，照样得加分。<blockquote>
+<p>根据HLTV.ORG等网站历史DEMO战绩分析得出的三个平均比率：</p>
+<ol>
+<li>平均每局杀人数=0.679</li>
+<li>平均生存比率=0.317</li>
+<li>平均多杀比率=1.277</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p><strong>Rating计算公式</strong></p>
+<ul>
+<li>Rating =（杀人Rating + 0.7×生存Rating + 多杀Rating）/ 2.7</li>
+<li>杀人Rating = 杀人数/局数/平均每局杀人数</li>
+<li>生存Rating =（局数—死亡数）/局数/平均生存比率</li>
+<li>多杀Rating =（1kill局数+4x2kill局数+9x3kill局数 + 16x4kill局数 + 25*5kill局数）/总局数/平均多杀比率</li>
+</ul>
+<p>经过5E平台N个场次比赛日志分析，得出普通选手平均正常表现的Rating值是0.8，因此假设当选手这场比赛Rating&gt;0.8就是好的表现，哪怕是输的，&lt;0.8表现太差了，哪怕是赢得，都得减分。</p>
+<p>此时，会有个问题，如果这个选手今天状态不佳输的太惨了，扣了许多分那之前表现不都白忙活了，所以我们要定义一个积分区间，每个天梯积分等级都要有自己的积分增减区间。</p>
+<p>例如：<br><img src="http://cdn.xscc.com/images/cs-rating/2.jpg" alt="2"></p>
+<p>经过大量历史参比数据可以得出这样的公式：</p>
+<ul>
+<li>如果 Rating &lt; 0.8 积分 = 积分区间负数 – (积分区间负数/0.8* Rating)</li>
+<li>如果 Rating = 0.8 积分 = 0 （没表现不加不减）</li>
+<li>如果 Rating &gt; 0.8 积分 = 积分区间正数/(2-0.8)*( Rating-0.8)</li>
+</ul>
+<p>实际应用5E对战平台：</p>
+
+            <p><a class="more-link" href="/cs-rating.html#more">阅读全部</a></p>
+        
+    </div>
+</article>
+
+
+
+    
+
+    
+
+
+    </div>
+    <div class="sidebar-area">
+    <aside class="widget">
+    <h1 class="widget-title">新文章</h1>
+    <ul>
+    
+        <li><a href="/gitolite.html">Centos利用Gitolite部署Git服务器</a></li>
+    
+        <li><a href="/vless.html">试用VLESS手机倒车摄像头</a></li>
+    
+        <li><a href="/taobao-ip.html">使用淘宝IP地址库获取IP归属地信息</a></li>
+    
+        <li><a href="/hg553-openwrt-10m.html">华为HG553刷OPENWRT设置10M全双工</a></li>
+    
+        <li><a href="/cs-rating.html">CS游戏的天梯系统设计思考</a></li>
+    
+    </ul>
+</aside>
+
+<aside class="widget">
+    <h1 class="widget-title">归档</h1>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li></ul>
+</aside>
+
+<aside class="widget">
+    <h1 class="widget-title">标签云</h1>
+    <div class="tagcloud">
+        <a href="/tags/PHP/" style="font-size: 20.00px;">PHP</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/front-end/" style="font-size: 10.00px;">前端</a><a href="/tags/esports/" style="font-size: 20.00px;">电子竞技</a>
+    </div>
+</aside>
+
+    </div>
+</div>
+
+</div>
+<footer class="footer">
+&copy; 2002-2015 Xscc.Com All rights reserved.
+</footer>
+
+<script>
+    var disqus_shortname = 'xscc';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+</body>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe19a4fef0fc57330481c86a6934dfd9f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</html>
+

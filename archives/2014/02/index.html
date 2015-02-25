@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>Xscc.Com </title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.xscc.com/html5.js"></script>
+    <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+<header class="header clearfix">
+    <h1 class="logo"><a href="http://www.xscc.com">Xscc.Com</a></h1>
+    <nav>
+        <a href="http://www.xscc.com">首页</a>
+        
+        <a href="/categories/share/">分享</a>
+        
+        <a href="/categories/it/">知识</a>
+        
+        <a href="/categories/hi/">杂谈</a>
+        
+        <a href="/project/">作品</a>
+        <a href="/me/">关于我</a>
+    </nav>
+</header>
+
+<div class="container clearfix">
+    <div class="article-area">
+    
+    
+        <article class="post">
+    <header class="article-header">
+        <h1><a href="/vless.html">试用VLESS手机倒车摄像头</a></h1>
+        <div class="details">
+            ZExceed / 2014-02-13 19:51:30
+             / 
+                <a href="/categories/hi/">杂谈</a>
+            
+        </div>
+    </header>
+    <div class="article-content">
+        
+            <p>一直对车载应用都挺感兴趣，正好看到一篇创业软文，春节闲着就给他们发了封建议信，节后就收到了试用产品，到手第一件事情就是拆、然后了解实现原理</p>
+<p><img src="http://cdn.xscc.com/images/vless/1.jpg" alt="1"></p>
+<p><img src="http://cdn.xscc.com/images/vless/2.jpg" alt="2"></p>
+<p><strong>原理</strong></p>
+<ul>
+<li>摄像头通电，发射一个Wifi热点，手机Wifi连接上去，形成局域网，APP获取摄像头画面。<br><img src="http://cdn.xscc.com/images/vless/3.jpg" alt="3"></li>
+</ul>
+<p><strong>安装</strong></p>
+<p>查看手册发现保险丝21号未用，就接了条线出来测试下</p>
+<p><img src="http://cdn.xscc.com/images/vless/4.jpg" alt="4"></p>
+<p><img src="http://cdn.xscc.com/images/vless/5.jpg" alt="5"></p>
+<p><img src="http://cdn.xscc.com/images/vless/6.jpg" alt="6"></p>
+<p><strong>倒车步骤</strong></p>
+<ul>
+<li>上车-&gt;激活手机-&gt;开启APP-&gt;显示画面（除首次外WIFI是自动连接的）-&gt;挂倒档倒车-&gt;倒车完成-&gt;关闭APP-&gt;关闭手机。</li>
+</ul>
+<p>这里就存在一个较大硬伤问题:</p>
+<ol>
+<li>倒车步骤太复杂，启动延迟久，经过我试用点击APP到看到画面差不多需要3-5秒，所以在倒车功能上，是无法与如今车载相比的，尽管清晰度上占优势，但操作便捷是最重要的。</li>
+<li>当手机连上摄像头（自动），手机就无法上网，无法收到微信之类APP的消息，也无法使用需要联网的APP，此时只能关闭WIFI。</li>
+<li>安装需要打孔（附送钻头），但不是人人都有电钻这样大型工具的，只能由维修厂安装了。</li>
+</ol>
+<p>因此目前我并没有安装在车上，或许用于监控动植物、鱼缸、门铃监控等等。</p>
+<p>后来发现一个调试的入口，用电脑连接这个Wifi，用浏览器打开网关192.168.2.103会出现一个实时画面，看HTML源码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span><span class="tag">&lt;<span class="title">title</span>&gt;</span>OmniVision Wifi Camera<span class="tag">&lt;/<span class="title">title</span>&gt;</span><span class="tag">&lt;/<span class="title">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">src</span>=<span class="value">"/s15"</span> <span class="attribute">alt</span>=<span class="value">""</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>用的是OmniVision Wifi Camera 并且用料很足，硬件质量还是不错的。（附拆解图）</p>
+
+            <p><a class="more-link" href="/vless.html#more">阅读全部</a></p>
+        
+    </div>
+</article>
+
+
+
+    
+
+    
+
+
+    </div>
+    <div class="sidebar-area">
+    <aside class="widget">
+    <h1 class="widget-title">新文章</h1>
+    <ul>
+    
+        <li><a href="/gitolite.html">Centos利用Gitolite部署Git服务器</a></li>
+    
+        <li><a href="/vless.html">试用VLESS手机倒车摄像头</a></li>
+    
+        <li><a href="/taobao-ip.html">使用淘宝IP地址库获取IP归属地信息</a></li>
+    
+        <li><a href="/hg553-openwrt-10m.html">华为HG553刷OPENWRT设置10M全双工</a></li>
+    
+        <li><a href="/cs-rating.html">CS游戏的天梯系统设计思考</a></li>
+    
+    </ul>
+</aside>
+
+<aside class="widget">
+    <h1 class="widget-title">归档</h1>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li></ul>
+</aside>
+
+<aside class="widget">
+    <h1 class="widget-title">标签云</h1>
+    <div class="tagcloud">
+        <a href="/tags/PHP/" style="font-size: 20.00px;">PHP</a><a href="/tags/git/" style="font-size: 10.00px;">git</a><a href="/tags/nodejs/" style="font-size: 10.00px;">nodejs</a><a href="/tags/front-end/" style="font-size: 10.00px;">前端</a><a href="/tags/esports/" style="font-size: 20.00px;">电子竞技</a>
+    </div>
+</aside>
+
+    </div>
+</div>
+
+</div>
+<footer class="footer">
+&copy; 2002-2015 Xscc.Com All rights reserved.
+</footer>
+
+<script>
+    var disqus_shortname = 'xscc';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+</body>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe19a4fef0fc57330481c86a6934dfd9f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</html>
+

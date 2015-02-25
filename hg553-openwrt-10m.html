@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>华为HG553刷OPENWRT设置10M全双工 | Xscc.Com </title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.xscc.com/html5.js"></script>
+    <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+<header class="header clearfix">
+    <h1 class="logo"><a href="http://www.xscc.com">Xscc.Com</a></h1>
+    <nav>
+        <a href="http://www.xscc.com">首页</a>
+        
+        <a href="/categories/share/">分享</a>
+        
+        <a href="/categories/it/">知识</a>
+        
+        <a href="/categories/hi/">杂谈</a>
+        
+        <a href="/project/">作品</a>
+        <a href="/me/">关于我</a>
+    </nav>
+</header>
+
+<div class="container clearfix">
+    <article class="post">
+    <header class="article-header">
+        <h1><a href="/hg553-openwrt-10m.html">华为HG553刷OPENWRT设置10M全双工</a></h1>
+        <div class="details">
+            ZExceed / 2013-01-18 22:45:09
+             / 
+                <a href="/categories/it/">知识</a>
+            
+        </div>
+    </header>
+    <div class="article-content">
+        
+            <p>我所在是老小区，当地最早通LAN，但是需要设置网卡10M全双工拨号才能达到真正10M网速（实际下载1.2M/s），自适应模式的话实际下载不超过700K/s而且不稳定，市面上很难找到可以设置10M全双工的路由器，正好有台老路由HG553，查了些资料可以刷OPENWRT那么也就能设置网卡工作模式了。</p>
+<p>相关资料：<a href="http://wiki.openwrt.org/toh/huawei/hg553">http://wiki.openwrt.org/toh/huawei/hg553</a></p>
+<ol>
+<li>首先<a href="http://downloads.openwrt.org/snapshots/trunk/brcm63xx/openwrt-HW553-squashfs-cfe.bin">下载编译好的固件</a>（HW553通用，有经验也可以自己编译）</li>
+<li>按住背后的researt键不放开，插上电源等15秒，然后浏览器打开192.168.1.1根据提示刷入固件</li>
+<li>刷机完成后，使用telnet登录 telnet 192.168.1.1 修改root密码 passwd root 此时telnet服务自动禁用，ssh自动开启</li>
+<li>由于HG553是没有WAN拨号功能的（这是ADSL集成猫路由器），所以需要虚拟一个WAN绑定到其中一个LAN口上，上面资料中配置文件里是绑定到第四个LAN口，不过不知道为什么后面无法设置网卡工作模式，所以我给调整到第一个LAN口上。</li>
+</ol>
+<figure class="highlight shell"><figcaption><span>下面配置文件通过WINSCP替换到/etc/config/network</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">config <span class="keyword">interface</span> <span class="comment">'loopback'</span></div><div class="line">    <span class="keyword">option</span> ifname <span class="comment">'lo'</span></div><div class="line">    <span class="keyword">option</span> proto <span class="comment">'static'</span></div><div class="line">    <span class="keyword">option</span> ipaddr <span class="comment">'127.0.0.1'</span></div><div class="line">    <span class="keyword">option</span> netmask <span class="comment">'255.0.0.0'</span></div><div class="line"></div><div class="line">config <span class="keyword">interface</span> <span class="comment">'lan'</span></div><div class="line">    <span class="keyword">option</span> ifname <span class="comment">'eth1.0'</span></div><div class="line">    <span class="keyword">option</span> type <span class="comment">'bridge'</span></div><div class="line">    <span class="keyword">option</span> proto <span class="comment">'static'</span></div><div class="line">    <span class="keyword">option</span> netmask <span class="comment">'255.255.255.0'</span></div><div class="line">    <span class="keyword">option</span> ip6assign <span class="comment">'64'</span></div><div class="line">    <span class="keyword">option</span> ipaddr <span class="comment">'192.168.1.1'</span></div><div class="line"></div><div class="line">config <span class="keyword">interface</span> <span class="comment">'wan'</span></div><div class="line">    <span class="keyword">option</span> _orig_ifname <span class="comment">'eth1.1'</span></div><div class="line">    <span class="keyword">option</span> _orig_bridge <span class="comment">'false'</span></div><div class="line">    <span class="keyword">option</span> ifname <span class="comment">'eth1.1'</span></div><div class="line">    <span class="keyword">option</span> proto <span class="comment">'pppoe'</span></div><div class="line">    <span class="keyword">option</span> username <span class="comment">'宽带拨号账户'</span></div><div class="line">    <span class="keyword">option</span> password <span class="comment">'宽带拨号密码'</span></div><div class="line"></div><div class="line">config globals <span class="comment">'globals'</span></div><div class="line">    <span class="keyword">option</span> ula_prefix <span class="comment">'fd79:8c93:e080::/48'</span></div><div class="line"></div><div class="line">config switch <span class="comment">'eth1'</span></div><div class="line">    <span class="keyword">option</span> enable <span class="comment">'1'</span></div><div class="line">    <span class="keyword">option</span> enable_vlan <span class="comment">'1'</span></div><div class="line">    <span class="keyword">option</span> reset <span class="comment">'1'</span></div><div class="line"></div><div class="line">config switch_vlan</div><div class="line">    <span class="keyword">option</span> vlan <span class="comment">'0'</span></div><div class="line">    <span class="keyword">option</span> device <span class="comment">'eth1'</span></div><div class="line">    <span class="keyword">option</span> ports <span class="comment">'1 2 3 5t'</span></div><div class="line"></div><div class="line">config switch_vlan</div><div class="line">    <span class="keyword">option</span> vlan <span class="comment">'1'</span></div><div class="line">    <span class="keyword">option</span> device <span class="comment">'eth1'</span></div><div class="line">    <span class="keyword">option</span> ports <span class="comment">'0 5t'</span></div><div class="line"></div><div class="line">config switch_port</div><div class="line">    <span class="keyword">option</span> port <span class="comment">'0'</span></div><div class="line">    <span class="keyword">option</span> pvid <span class="comment">'1'</span></div></pre></td></tr></table></figure>
+
+<p>然后XSHELL等工具SSH连接上去重启网络服务 /etc/init.d/network restart</p>
+<p>请确保宽带进线插LAN1口，自己电脑网线插2-4口，此时应该能连上网了，不行就重启下路由器。</p>
+<p>然后再安装路由器WEB管理界面LUCI：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">opkg <span class="operator"><span class="keyword">update</span></div><div class="line">opkg <span class="keyword">install</span> luci</div><div class="line">opkg <span class="keyword">install</span> libcyassl</div><div class="line">/etc/init.d/uhttpd <span class="keyword">start</span></div><div class="line">/etc/init.d/uhttpd enable</span></div></pre></td></tr></table></figure>
+
+<p>此时可以打开浏览器用root账户密码登录进去设置简体中文、开启无线等等。</p>
+<p>下面如果你不需要设置10M全双工请跳过</p>
+<ol>
+<li>下载 mii-tool工具并用WINSCP上传至路由器（其它路由器下载对应的包即可）</li>
+<li>下载 <a href="http://downloads.openwrt.org/snapshots/trunk/brcm63xx/packages/">http://downloads.openwrt.org/snapshots/trunk/brcm63xx/packages/</a> 搜索 mii-tool 下载最新版</li>
+<li>安装 opkg install mii-tool_最新版本号_brcm63xx.ipk</li>
+<li>执行 mii-tool -F 10BaseT-FD eth1这样第一个LAN口就强制10M全双工了。</li>
+</ol>
+<p>可以到LUCI界面的网络-交换机中确定是否生效</p>
+<p><img src="http://cdn.xscc.com/images/hg553-openwrt-10m/1.jpg" alt="18"></p>
+<p>终于爽爆了，不能接入光纤的老小区伤不起呀。</p>
+<p><img src="http://cdn.xscc.com/images/hg553-openwrt-10m/2.jpg" alt="19"></p>
+
+        
+    </div>
+</article>
+
+
+    
+    <div class="page-area clearfix">
+        
+        <span class="prev"><a href="/taobao-ip.html">&laquo; 使用淘宝IP地址库获取IP归属地信息</a></span>
+        
+        
+        <span class="next"><a href="/cs-rating.html">CS游戏的天梯系统设计思考 &raquo;</a></span>
+        
+    </div>
+    
+    <section id="comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </section>
+    
+
+
+</div>
+
+</div>
+<footer class="footer">
+&copy; 2002-2015 Xscc.Com All rights reserved.
+</footer>
+
+<script>
+    var disqus_shortname = 'xscc';
+    
+    var disqus_url = 'http://www.xscc.com/hg553-openwrt-10m.html';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+</body>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe19a4fef0fc57330481c86a6934dfd9f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</html>
+

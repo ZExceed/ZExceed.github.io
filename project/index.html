@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>开源作品与历史项目 | Xscc.Com </title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.xscc.com/html5.js"></script>
+    <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+<header class="header clearfix">
+    <h1 class="logo"><a href="http://www.xscc.com">Xscc.Com</a></h1>
+    <nav>
+        <a href="http://www.xscc.com">首页</a>
+        
+        <a href="/categories/share/">分享</a>
+        
+        <a href="/categories/it/">知识</a>
+        
+        <a href="/categories/hi/">杂谈</a>
+        
+        <a href="/project/">作品</a>
+        <a href="/me/">关于我</a>
+    </nav>
+</header>
+
+<div class="prj-grid clearfix">
+<div class="prj-cell">
+    <h1>赛事对阵图定位组件</h1>
+    <img class="thumbnail" src="http://cdn.xscc.com/images/project/vsview.gif" alt="VsView 赛事系统对阵图单元格定位组件">
+    <div class="overlay">
+        <a class="fork" href="https://github.com/ZExceed/VsView" target="_blank">浏览项目</a>
+    </div>
+    <i class="fork"></i>
+</div>
+
+<div class="prj-cell">
+    <h1>明基中国微信管理系统</h1>
+    <img class="thumbnail" src="http://cdn.xscc.com/images/project/benqwx.jpg" data-list="1,2,3,4" alt="明基中国微信管理系统">
+    <div class="overlay">
+        <p>明基中国微信后台管理系统，商业后台系统。</p>
+    </div>
+</div>
+
+<div class="prj-cell">
+    <h1>明基手机定制网站</h1>
+    <img class="thumbnail" src="http://cdn.xscc.com/images/project/qmobi.jpg" data-list="1" alt="明基手机后盖定制网站">
+    <div class="overlay">
+        <a class="fork" href="http://qmobi.benq.com.cn/" target="_blank">浏览项目</a>
+    </div>
+</div>
+
+<div class="prj-cell">
+    <h1>5E电竞平台</h1>
+    <img class="thumbnail" src="http://cdn.xscc.com/images/project/5ept.jpg" alt="5e电竞平台">
+    <div class="overlay">
+        <p>5E电竞平台，项目已下线</p>
+    </div>
+</div>
+
+<div class="prj-cell featured">
+    <h1>CS约战系统</h1>
+    <img class="thumbnail" src="http://cdn.xscc.com/images/project/o3o4o5.jpg" alt="CS约战系统">
+    <div class="overlay">
+        <a class="fork" href="http://vs.5eplay.com" target="_blank">浏览项目</a>
+    </div>
+</div>
+
+<div class="prj-cell featured">
+    <h1>5eplay电竞网</h1>
+    <img class="thumbnail" src="http://cdn.xscc.com/images/project/5eplay.jpg" alt="5eplay官网">
+    <div class="overlay">
+        <a class="fork" href="http://www.5eplay.com" target="_blank">浏览项目</a>
+    </div>
+</div>
+
+</div>
+<script>
+// 项目展示图片轮播
+window.onload = function(){
+    var thumbnail = document.querySelectorAll('.thumbnail');
+    for (var i = 0, l = thumbnail.length; i < l; i++){
+        var list = thumbnail[i].getAttribute('data-list'),
+            ysrc = thumbnail[i].getAttribute('src');
+        if(!list){continue;}
+            list = list.split(',');
+
+        (function(img, src, timeout){
+            setTimeout(function(){
+                return focus(img, src, timeout);
+            }, timeout);
+        })(thumbnail[i], ysrc, 5000);
+    }
+};
+
+function focus(img, src, timeout){
+    var list = img.getAttribute('data-list').split(','),
+        cur  = img.getAttribute('data-cur'),
+        url  = src.slice(0, -4),
+        ext  = src.slice(-4),
+        now  = !cur ? list[0] : '';
+
+    for(var i = 0, l = list.length; i < l; i++){
+        if(cur === list[i] && list[i+1]){
+            now = list[i+1];
+        }
+    }
+
+    img.setAttribute('src', url + (now ? '-' + now : '') + ext);
+    img.setAttribute('data-cur', now);
+
+    setTimeout(function(){
+        focus(img, src, timeout);
+    }, timeout);
+}
+</script>
+
+</div>
+<footer class="footer">
+&copy; 2002-2015 Xscc.Com All rights reserved.
+</footer>
+
+<script>
+    var disqus_shortname = 'xscc';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+</body>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe19a4fef0fc57330481c86a6934dfd9f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</html>
+

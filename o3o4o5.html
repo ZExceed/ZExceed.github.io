@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>o3o4o5的前世今生 | Xscc.Com </title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.xscc.com/html5.js"></script>
+    <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+<header class="header clearfix">
+    <h1 class="logo"><a href="http://www.xscc.com">Xscc.Com</a></h1>
+    <nav>
+        <a href="http://www.xscc.com">首页</a>
+        
+        <a href="/categories/share/">分享</a>
+        
+        <a href="/categories/it/">知识</a>
+        
+        <a href="/categories/hi/">杂谈</a>
+        
+        <a href="/project/">作品</a>
+        <a href="/me/">关于我</a>
+    </nav>
+</header>
+
+<div class="container clearfix">
+    <article class="post">
+    <header class="article-header">
+        <h1><a href="/o3o4o5.html">o3o4o5的前世今生</a></h1>
+        <div class="details">
+            ZExceed / 2011-12-08 12:15:45
+             / 
+                <a href="/categories/hi/">杂谈</a>
+            
+        </div>
+    </header>
+    <div class="article-content">
+        
+            <p>随着o3o4o5.com（现<a href="http://vs.5eplay.com">vs.5eplay.com</a>） 收购事项告一段落，今天来回忆下o3o4o5的前世今生。</p>
+<p>得从05年说起，玩CS的都知道那会儿组队容易找队难，大家都在QQ聊天室里刷屏找队当兵，那时候服务器少聊天室房间更少，一到晚上房间就爆满，好不容易有人发了个IP，进去跟个菜市场似的，06年互联网整顿，QQ聊天室被关闭了，大家伙又转移到了QQ群约战，那效率更低了，同时加N个群刷屏，找的人累死，不玩的人吵死。</p>
+<p>那会就萌生一个想法，要开发一套约战平台，由于当时的互联网环境对地域Ping值差距是非常大的，不像现在只要在同家运营商之内Ping值基本可以接受，所以就得有个功能测Ping（指用户客户端-游戏服务器之间的ping值），可是那会自己学的是前端、PHP，而这两门技术是无法实现这个需求的，无奈无奈，找了本delphi的书啃起了Activex插件开发。</p>
+<p>前后花了差不多半年时间，终于完成了，基于Activex的测Ping插件，可这时已经有人开发了约战平台，当然没有测Ping功能可这种强烈的需求摆在哪儿这个功能都已经显得不重要了，一夜时间各大论坛、QQ群、聊天室都在传播这个约战平台，骂爹都已经没有用了，当时时间紧迫， 2个通宵彻夜开发完成了第一版从无到有的过程，然后要打败他必须走从有到精的战略方向，毕竟这玩意儿我思考了整整2年，积累了许多的想法，当即决定从2个方面入手与其做竞争：速度与便捷。</p>
+<a id="more"></a>
+<p><img src="http://cdn.xscc.com/images/o3o4o5/1.jpg" alt="3"></p>
+<p>（上图网上找的应该是早期第三版）</p>
+<p><strong>速度</strong></p>
+<ul>
+<li>对手网站，每次刷新连接20个服务器列表获取即时服务器与玩家信息进行展示，每次刷新都得会个2-3秒卡顿，一到晚上延迟就更高，通过研究发现对手采用的是一个第三方开源Gameq类库。</li>
+</ul>
+<p><strong>应对方法</strong></p>
+<ul>
+<li>彻底研究SourceQuery API，在参考GameQ寻找不足点之上写了一套自己的Source查询类，经过测试速度比Gameq快了至少2倍以上。</li>
+<li>然后在服务器上下功夫，采用BGP机房，兼顾电信网通服务器，这个一来实际刷新速度都控制在0.5s之内。</li>
+</ul>
+<p><strong>便捷的用户体验</strong></p>
+<ul>
+<li>对手网站，需要注册，填写服务器IP、密码、反作弊选项、服务器线路、约战说明。</li>
+</ul>
+<p><strong>应对方法</strong></p>
+<ul>
+<li>前期，免注册，直接发布信息，只需填写服务器IP和密码，Select选择框选择常用约战说明，自动识别反作弊、服务器线路。 所以当一个普通用户只需要“填写服务器IP”一项即可。</li>
+</ul>
+<p><strong>宣传</strong></p>
+<ul>
+<li>写了不少的软文，发表在PCG/CGA/QQ群/等等各大电竞新闻网站上，差不多只有半个月时间，流量就从0升到5000IP，再后面，各大QQ群、玩家之间传播的都是我的o3o4o5约战平台了，直到网站被收购，IP突破3万，PV20-30万，对于只有“一个页面”的网站来说这个成绩还算满意。</li>
+</ul>
+<p>(下图最后一版 5EPLAY版)</p>
+<p><img src="http://cdn.xscc.com/images/o3o4o5/2.jpg" alt="5"></p>
+
+        
+    </div>
+</article>
+
+
+    
+    <div class="tags">标签:
+        
+            <a href="/tags/esports/">电子竞技</a>
+        
+    </div>
+    
+    <div class="page-area clearfix">
+        
+        <span class="prev"><a href="/source-query.html">&laquo; Source引擎游戏服务器状态查询类</a></span>
+        
+        
+        <span class="next"><a href="/hello-world.html">再次开博！ &raquo;</a></span>
+        
+    </div>
+    
+    <section id="comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </section>
+    
+
+
+</div>
+
+</div>
+<footer class="footer">
+&copy; 2002-2015 Xscc.Com All rights reserved.
+</footer>
+
+<script>
+    var disqus_shortname = 'xscc';
+    
+    var disqus_url = 'http://www.xscc.com/o3o4o5.html';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+</body>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe19a4fef0fc57330481c86a6934dfd9f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</html>
+
