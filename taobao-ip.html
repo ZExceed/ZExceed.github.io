@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" href="/static/images/favicon.png">
     <link rel="stylesheet" href="/static/css/style.min.css">
     <!--[if lt IE 9]>
-    <script src="http://cdn.xscc.com/html5.js"></script>
+    <script src="http://cdn.xscc.com/static/js/html5.js"></script>
     <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
     <![endif]-->
 </head>
@@ -64,11 +64,11 @@
 <li>{“code”:0,”data”:{“ip”:”210.75.225.254”,”country”:”\u4e2d\u56fd”,”area”:”\u534e\u5317”, “region”:”\u5317\u4eac\u5e02”,”city”:”\u5317\u4eac\u5e02”,”county”:””,”isp”:”\u7535\u4fe1”, “country_id”:”86”,”area_id”:”100000”,”region_id”:”110000”,”city_id”:”110000”, “county_id”:”-1”,”isp_id”:”100017”}}</li>
 <li>其中code的值的含义为，0：成功，1：失败。</li>
 </ul>
-<figure class="highlight php"><figcaption><span>PHP</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ipToLocal</span><span class="params">(<span class="variable">$ip</span>)</span></span>{</div><div class="line">    <span class="variable">$url</span> = <span class="string">'http://ip.taobao.com/service/getIpInfo.php?ip=$ip'</span>;</div><div class="line">    <span class="variable">$ip</span>  = json_decode(file_get_contents(<span class="variable">$url</span>), <span class="keyword">true</span>);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable">$ip</span>[<span class="string">'code'</span>]) && <span class="variable">$ip</span>[<span class="string">'code'</span>] === <span class="number">0</span> ? <span class="variable">$ip</span>[<span class="string">'data'</span>] : <span class="keyword">false</span>;</div><div class="line">}</div><div class="line">print_r(ipToLocal(<span class="string">'8.8.8.8'</span>));</div></pre></td></tr></table></figure>
+<figure class="highlight php"><figcaption><span>PHP</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ipToLocal</span><span class="params">(<span class="variable">$ip</span>)</span></span>{</div><div class="line">    <span class="variable">$url</span> = <span class="string">"http://ip.taobao.com/service/getIpInfo.php?ip=$ip"</span>;</div><div class="line">    <span class="variable">$ip</span>  = json_decode(file_get_contents(<span class="variable">$url</span>), <span class="keyword">true</span>);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">isset</span>(<span class="variable">$ip</span>[<span class="string">'code'</span>]) && <span class="variable">$ip</span>[<span class="string">'code'</span>] === <span class="number">0</span> ? <span class="variable">$ip</span>[<span class="string">'data'</span>] : <span class="keyword">false</span>;</div><div class="line">}</div><div class="line">print_r(ipToLocal(<span class="string">'8.8.8.8'</span>));</div></pre></td></tr></table></figure>
 
 <p>用了几天还蛮稳定。</p>
-<p><img src="http://cdn.xscc.com/images/taobao-ip/1.jpg" alt="21"></p>
-<p><img src="http://cdn.xscc.com/images/taobao-ip/2.jpg" alt="20"></p>
+<p><img src="http://cdn.xscc.com/photos/taobao-ip/1.jpg" alt="21"></p>
+<p><img src="http://cdn.xscc.com/photos/taobao-ip/2.jpg" alt="20"></p>
 
         
     </div>
