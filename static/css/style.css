@@ -493,7 +493,10 @@ aside.widget ul li a:hover{
 .prj-grid .featured .links{
     bottom: 160px;
 }
-
+.prj-grid .mobile{
+    width: 268px;
+    height: 422px;
+}
 
 .page-area{
     text-align: right;
