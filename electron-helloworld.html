@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>初识Electron之Helloworld | Xscc.Com </title>
+    <meta name="description" content="">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telphone=no, email=no">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/images/favicon.png">
+    <link rel="stylesheet" href="/static/css/style.min.css">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.xscc.com/static/js/html5.js"></script>
+    <script>alert('FOR A BETTER EXPERIENCE, KEEP YOUR BROWSER UP TO DATE. CHECK HERE FOR LATEST VERSIONS.');</script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="wrapper">
+<header class="header clearfix">
+    <h1 class="logo"><a href="http://www.xscc.com">Xscc.Com</a></h1>
+    <nav>
+        <a href="http://www.xscc.com">首页</a>
+        
+        <a href="/categories/share/">分享</a>
+        
+        <a href="/categories/it/">知识</a>
+        
+        <a href="/categories/hi/">杂谈</a>
+        
+        <a href="/project/">作品</a>
+        <a href="/me/">关于我</a>
+    </nav>
+</header>
+
+<div class="container clearfix">
+    <article class="post">
+    <header class="article-header">
+        <h1><a href="/electron-helloworld.html">初识Electron之Helloworld</a></h1>
+        <div class="details">
+            ZExceed / 2016-02-08 21:59:07
+             / 
+                <a href="/categories/it/">知识</a>
+            
+        </div>
+    </header>
+    <div class="article-content">
+        
+            <p>目前公司的项目（C/S结构）客户端使用Delphi开发，由于技术力量限制很多交互功能都无法及时有效的实现，导致产品一度进展缓慢，所以计划使用前端技术来弥补客户端上面的不足，nodejs开发桌面应用很早就有了解，但一直没有合适的产品需求去深入学习和挖掘，正好春节假期打算学习写一些DEMO来验证方案可行性。</p>
+<p><strong>一、对比 Hex、NW.js、Electron</strong><br>选择一项技术，主要考虑这几个点：更新频率（成熟度）、相关文档、产品案例</p>
+<ul>
+<li>Hex 网易开发，最后更新14年，主要产品是有道词典，相关文档中文但资料稀少，直接PASS。</li>
+<li>NW.js 和 Electron 从官方技术文档看，前者使用package.json指定页面入口，后者是JS文件作为入口可以监听窗口事件、自由加载HTML文件，提供的API更底层更灵活，以及构建系统、Node集成方式等也显得更为有优势，另外相关成熟案例也是Electron居多。</li>
+</ul>
+<p><strong>二、第一个 Helloworld</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/atom/electron-quick-<span class="operator"><span class="keyword">start</span></div><div class="line">cd electron-<span class="keyword">quick</span>-<span class="keyword">start</span></div><div class="line">npm <span class="keyword">install</span> && npm <span class="keyword">start</span></span></div></pre></td></tr></table></figure>
+
+<p>非常简单就能执行成功，显示一个单页面浏览器。</p>
+<p><strong>三、开发准备 调试搭建</strong><br>调试分为主进程和渲染进程两块，其中渲染进程直接使用自带浏览器开发工具调试，在创建窗口的时候执行 mainWindow.openDevTools(); 即可，主进程可以使用nodejs的—debug参数配合 node-inspector 来进行调试。</p>
+<ul>
+<li>安装 node-gyp</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> -g node-gyp</span></div></pre></td></tr></table></figure>
+
+<p>以Win7操作系统为例子，还需要安装Microsoft Visual Studio C++ 2013（可以使用Express阉割版）和Python2.7。</p>
+<ul>
+<li>安装 npm install node-inspector</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> node-inspector</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>安装 node-pre-gyp</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install git+http<span class="variable">s:</span>//git@github.<span class="keyword">com</span>/enlight/node-<span class="keyword">pre</span>-gyp.git#detect-electron-<span class="keyword">runtime</span>-in-<span class="keyword">find</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>重新编译node-inspector的v8调试模块</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">--target 为 electron 的版本号，注意下面的路径 如果是全局安装需要对node-inspector的路径进行修改，官方文档的例子实际上路径是有问题的。</div><div class="line">$ node_modules/.bin/node-<span class="keyword">pre</span>-gyp --target=<span class="number">0.36</span>.<span class="number">7</span> --<span class="keyword">runtime</span>=electron --fallback-<span class="keyword">to</span>-build --directory node_modules/node-inspector/node_modules/v8-<span class="keyword">debug</span>/ --dist-url=http<span class="variable">s:</span>//atom.io/download/atom-<span class="keyword">shell</span> reinstall</div><div class="line">$ node_modules/.bin/node-<span class="keyword">pre</span>-gyp --target=<span class="number">0.36</span>.<span class="number">7</span> --<span class="keyword">runtime</span>=electron --fallback-<span class="keyword">to</span>-build --directory node_modules/node-inspector/node_modules/v8-profiler/ --dist-url=http<span class="variable">s:</span>//atom.io/download/atom-<span class="keyword">shell</span> reinstall</div><div class="line"></div><div class="line">编译比较慢，有时候需要下载一些确实模块组件，有可能需要挂VPN才能下载</div></pre></td></tr></table></figure>
+
+<ol>
+<li>运行自己开发的应用</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">electron</span> --<span class="built_in">debug</span>=<span class="number">5858</span> app目录</div></pre></td></tr></table></figure>
+
+<ol>
+<li>启动 node-inspector</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node node_modules<span class="regexp">/node-inspector/</span>bin<span class="regexp">/inspector.js</span></div></pre></td></tr></table></figure>
+
+<p>如果出现例如 Error: Cannot find module … node-v47-win32-ia32\debug.node 的错误，把相应目录（electron-v47-win32-ia32）改成与提示一致即可，这应该是编译的时候指定为electron的问题，应该在启动node-inspector的时候可以指定，不过这里没有深入去研究，只是强行改了个目录就行了。</p>
+<p><strong>四、比较常见的几个问题</strong></p>
+<ol>
+<li><p>基于安全和稳定考虑渲染进程无法直接调用主进程的函数，但可以通过IPC进行通信，同时也提供几个基本的API如remote，具体可以看<a href="https://github.com/atom/electron/tree/master/docs">文档</a></p>
+</li>
+<li><p>配置文件存放，可以使用app模块的getPath(‘userData’)来获取数据存放目录，这里的getPath函数还可以读取桌面、文档、等目录 <a href="https://github.com/atom/electron/blob/master/docs/api/app.md">文档</a>。</p>
+</li>
+<li><p>待补充…</p>
+</li>
+</ol>
+
+        
+    </div>
+</article>
+
+
+    
+    <div class="tags">标签:
+        
+            <a href="/tags/electron/">electron</a>
+        
+            , <a href="/tags/nodejs/">nodejs</a>
+        
+            , <a href="/tags/front-end/">前端</a>
+        
+    </div>
+    
+    <div class="page-area clearfix">
+        
+        
+        <span class="next"><a href="/canvas-vsview.html">利用canvas改进赛事对阵表思路 &raquo;</a></span>
+        
+    </div>
+    
+    <section id="comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </section>
+    
+
+
+</div>
+
+</div>
+<footer class="footer">
+&copy; 2002-2015 Xscc.Com All rights reserved.
+</footer>
+
+<script>
+    var disqus_shortname = 'xscc';
+    
+    var disqus_url = 'http://www.xscc.com/electron-helloworld.html';
+    
+    (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+
+</body>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe19a4fef0fc57330481c86a6934dfd9f' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</html>
+
